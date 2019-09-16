@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804a422497476754284a5f16628132da, type: 3}
+  m_Name: Question Bank
+  m_EditorClassIdentifier: 
+  questions:
+  - text: "Algumas obras de arte na sociedade medieval ilustravam as crian\xE7as de
+      m\xE3os dadas com representa\xE7\xF5es da morte em alus\xE3o \xE0 alta mortalidade
+      infantil"
+    trueOrFalse: 1
+    wasUsed: 0
+  - text: "A palavra \u201Ccrian\xE7a\u201D s\xF3 foi aparecer nos dicion\xE1rios
+      no in\xEDcio do s\xE9culo XX"
+    trueOrFalse: 0
+    wasUsed: 0
+  - text: "Na \xE9poca da escravatura, at\xE9 per\xEDodo de amamenta\xE7\xE3o, considerado
+      um estreito la\xE7o de afetividade entre m\xE3es e filhos, era uma tarefa atribu\xEDda
+      \xE0s \u201Camas de leite\u201D."
+    trueOrFalse: 1
+    wasUsed: 0
+  - text: "Hoje, um beb\xEA, ao nascer, ainda n\xE3o sai da maternidade com registro
+      em cart\xF3rio, com nome e sobrenome, bem como data e hor\xE1rio precisos de
+      nascimento. Isso s\xF3 \xE9 poss\xEDvel dias ap\xF3s o nascimento."
+    trueOrFalse: 0
+    wasUsed: 0
+  - text: "Segundo Vygotsky, o sujeito se constitui atrav\xE9s de intera\xE7\xF5es
+      no seu meio social e com essa estrutura social as fun\xE7\xF5es psicol\xF3gicas
+      s\xE3o constru\xEDdas."
+    trueOrFalse: 1
+    wasUsed: 0

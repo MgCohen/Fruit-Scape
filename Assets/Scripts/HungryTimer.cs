@@ -17,18 +17,25 @@ public class HungryTimer : MonoBehaviour
 
     public Slider slide;
 
+    public GameEvent stopped;
+
     private void Start()
     {
         currentTimer = MaxTimer;
         slide.maxValue = currentTimer;
+        slide.value = slide.maxValue;
     }
 
     private void Update()
     {
+        if (stopped.IsPlaying())
+        {
+            return;
+        }
         currentTimer -= Time.deltaTime;
         if(currentTimer <= 0 && Manager.instance.player.EnableInput)
         {
-            Manager.instance.PassTurn();
+            Manager.instance.AskQuestion();
             HungryLevel -= 10;
             HungryLevel = Mathf.Clamp(HungryLevel, 0, 100);
             currentTimer = MaxTimer - ((HungryLevel) / 100) * (MinTimer - MaxTimer);
@@ -44,7 +51,7 @@ public class HungryTimer : MonoBehaviour
 
     public void Eat()
     {
-        currentTimer = MaxTimer - (((HungryLevel) / 100) * (MinTimer - MaxTimer));
+        //currentTimer = MaxTimer - (((HungryLevel) / 100) * (MinTimer - MaxTimer));
         HungryLevel += hungryIncrease;
         HungryLevel = Mathf.Clamp(HungryLevel, 0, 100);
     }

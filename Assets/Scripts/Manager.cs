@@ -35,9 +35,16 @@ public class Manager : MonoBehaviour
 
     public int tigerActions = 0;
 
+    public GameEvent stopEvent;
+
+    public GameObject question;
+
+    public GameObject EndScreen;
+
+    public QuestionBank questions;
+
     private void Start()
     {
-        TouchSystem.Hold.AddListener(CameraControl);
         hungry = GetComponent<HungryTimer>();
         Time.timeScale = 1;
         if (Orthosize.isSet)
@@ -45,6 +52,7 @@ public class Manager : MonoBehaviour
             Camera.main.orthographicSize = Orthosize.value;
         }
         Setup();
+        stopEvent.Raise();
     }
 
     public void Setup()
@@ -217,6 +225,20 @@ public class Manager : MonoBehaviour
         }
     }
 
+    public void AskQuestion()
+    {
+        stopEvent.Raise();
+        question.SetActive(true);
+        question.GetComponentInChildren<Question>().SetQuest(questions.GetNewQuestion());
+        player.EnableInput = false;
+    }
+
+    public void End(bool trueOrFalse)
+    {
+        stopEvent.Raise();
+        EndScreen.SetActive(true);
+    }
+
     class RespawningObj
     {
         public RespawningObj(GameObject obj, int turnsNeeded)
@@ -246,29 +268,8 @@ public class Manager : MonoBehaviour
 
     public void PlayAgain()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         Board.board.Clear();
     }
 
-
-    public void Plus()
-    {
-        Camera.main.orthographicSize += 0.5f;
-        Camera.main.GetComponent<CameraEffect>().ortho = Camera.main.orthographicSize;
-        Orthosize.value = Camera.main.orthographicSize;
-        Orthosize.isSet = true;
-    }
-
-    public void Minus()
-    {
-        Camera.main.orthographicSize -= 0.5f;
-        Camera.main.GetComponent<CameraEffect>().ortho = Camera.main.orthographicSize;
-        Orthosize.value = Camera.main.orthographicSize;
-        Orthosize.isSet = true;
-    }
-
-    public void CameraControl()
-    {
-        cameraCanvas.SetActive(true);
-    }
 }

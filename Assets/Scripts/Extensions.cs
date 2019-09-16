@@ -10,7 +10,6 @@ public static class Extensions
         Object.Destroy(obj);
     }
 
-
     public static Vector3 Unidirectional(this Vector3 dir)
     {
         var x = Mathf.Abs(dir.x);
@@ -68,6 +67,51 @@ public static class Extensions
     {
         var vec = new Vector3(dir.x, dir.y, 0).Directional();
         return new Vector2(vec.x, vec.y);
+    }
+
+    public static Vector3 Round(this Vector3 vec)
+    {
+        var x = Mathf.Round(vec.x);
+        var y = Mathf.Round(vec.y);
+        var z = Mathf.Round(vec.z);
+        return new Vector3(x, y, z);
+
+    }
+
+    public static Vector2 Round(this Vector2 vec)
+    {
+        vec = Round(new Vector3(vec.x, vec.y, 0));
+        return new Vector2(vec.x, vec.y);
+    }
+
+    public static Bounds GetBounds(this Transform target)
+    {
+        bool first = true;
+        Bounds bound = new Bounds();
+        var rend = target.GetComponent<Renderer>();
+        if (rend)
+        {
+            bound = rend.bounds;
+            first = false;
+        }
+        foreach (Transform child in target)
+        {
+            var rends = child.GetComponentsInChildren<Renderer>();
+            foreach (var mRend in rends)
+            {
+                var tempBound = mRend.bounds;
+                if (first)
+                {
+                    bound = tempBound;
+                    first = false;
+                }
+                else
+                {
+                    bound.Encapsulate(tempBound);
+                }
+            }
+        }
+        return bound;
     }
 
 }

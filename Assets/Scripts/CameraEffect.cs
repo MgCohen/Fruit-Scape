@@ -7,7 +7,7 @@ public class CameraEffect : MonoBehaviour
 
     public float ortho;
 
-    private void OnEnable()
+    private void Start()
     {
         ortho = Camera.main.orthographicSize;
     }
